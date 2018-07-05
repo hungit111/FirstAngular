@@ -10,6 +10,7 @@ import { HeaderService } from './header.service';
 import {  HttpModule } from '@angular/http';
 import { DataTablesModule } from 'angular-datatables';
 import { BlacklistsComponent } from './blacklists/blacklists.component';
+import {NgxPaginationModule} from 'ngx-pagination'; 
 
 
 
@@ -24,7 +25,8 @@ import { BlacklistsComponent } from './blacklists/blacklists.component';
     BrowserModule,
     AppRoutingModule,
     HttpModule,
-    DataTablesModule
+    DataTablesModule,
+    NgxPaginationModule
   ],
   providers: [HeaderService],
   bootstrap: [AppComponent]
