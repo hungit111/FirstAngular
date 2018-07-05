@@ -8,6 +8,8 @@ import { BlogerComponent } from './bloger/bloger.component';
 import { CommentsComponent } from './comments/comments.component';
 import { HeaderService } from './header.service';
 import {  HttpModule } from '@angular/http';
+import { DataTablesModule } from 'angular-datatables';
+import { BlacklistsComponent } from './blacklists/blacklists.component';
 
 
 
@@ -16,12 +18,13 @@ import {  HttpModule } from '@angular/http';
     AppComponent,
     PostsComponent,
     BlogerComponent,    
-    CommentsComponent
+    CommentsComponent, BlacklistsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    DataTablesModule
   ],
   providers: [HeaderService],
   bootstrap: [AppComponent]

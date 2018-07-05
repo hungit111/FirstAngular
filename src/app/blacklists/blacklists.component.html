@@ -1,0 +1,14 @@
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+  <thead>
+    <tr>      
+      <th>Black Word</th>
+      <th>Update Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let bl of blackLists">      
+      <td>{{ bl.word }}</td>
+      <td>{{ bl.date }}</td>
+    </tr>
+  </tbody>
+  </table>
