@@ -1,0 +1,9 @@
+  <div class="card mb-3" *ngFor= 'let cmt of listComment'>    
+      <div class="card-header">
+            @{{cmt.name}} Say:
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{cmt.title}}</h5>
+        <p class="card-text">{{cmt.content}}</p>                    
+      </div>
+  </div>

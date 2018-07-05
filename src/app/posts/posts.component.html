@@ -1,0 +1,34 @@
+
+<div class="row" *ngFor = 'let lst of listPost' >                
+  <div class="shadow-sm col-sm-12 p-3 mb-5 bg-white rounded">
+      <h4>{{lst.name}}</h4>
+      <p>
+          {{lst.content}}            
+      </p>
+      <hr/>      
+      <app-comments        
+        [postId]=lst.id   
+      >
+
+      </app-comments>
+      
+      
+      <div class="form-group">
+          <div class="row">
+              <div class="col-sm-4">                                                             
+                  <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                          <div class="input-group-text">@Hung</div>
+                      </div>
+                      <textarea class="form-control" id="txtComment" rows="1"></textarea>                            
+                      
+                  </div>
+              </div>
+              <div class="col-sm-2">
+                  <button class="btn btn-primary">Add comment</button>
+              </div>
+          </div>
+          
+      </div>
+  </div>
+</div>   
