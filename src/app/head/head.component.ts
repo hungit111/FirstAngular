@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderService } from '../header.service';
 import { Router,  NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Http } from '@angular/http';
 
 
 
@@ -9,8 +10,13 @@ import { Subscription } from 'rxjs';
   selector: 'app-head',
   templateUrl: './head.component.html'  
 })
+
+
+
 export class HeadComponent implements OnInit {
   
+  
+  tContent;
   langDefault : string;
   langList=[{
     value:"EN",
@@ -22,8 +28,10 @@ export class HeadComponent implements OnInit {
   }
   ];
   title="Blogs";
+  
+
   subscription: Subscription;
-  constructor(private _hd : HeaderService, private _router:Router ) {
+  constructor(private _hd : HeaderService, private _router:Router, private _http: Http ) {
     this._router.events
     .subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -39,8 +47,17 @@ export class HeadComponent implements OnInit {
     });
     
   }
+  
+  getTranslatePack() {    
+    console.log("-------------compo-------------");
+    return  this._hd.getTranslatePack(this.langDefault).subscribe(data => {
+      this.tContent = data.json();               
+         
+    });    
+  }
   setLang(event){    
     localStorage.setItem("langDefault", event); 
+    this.getTranslatePack();
   }
   
   
@@ -48,7 +65,7 @@ export class HeadComponent implements OnInit {
   ngOnInit() {
     //this._hd.set(this.title);
     this.langDefault=localStorage.getItem("langDefault") || "EN";
-    
+    this.getTranslatePack();
     
   }
   ngOnDestroy() {

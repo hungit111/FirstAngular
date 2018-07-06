@@ -14,6 +14,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { HeadComponent } from './head/head.component';
 import { NgxPopper } from 'angular-popper'; 
 import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { FormsModule } from "@angular/forms";
     DataTablesModule,
     NgxPaginationModule,
     NgxPopper,
-    FormsModule
+    FormsModule,
+    HttpClientModule
 
   ],
   providers: [HeaderService],

@@ -9,21 +9,13 @@
       
   </select>
   
-  <nav class="my-2 my-md-0 mr-md-3" *ngIf="langDefault=='EN'; then enBlock else viBlock" >
-
+  <nav class="my-2 my-md-0 mr-md-3">
+      <a class="p-2 text-dark" href="/posts">{{tContent.pPost}}</a>
+      <a class="p-2 text-dark" href="/bloger">{{tContent.pBloger}}</a>
+      <a class="p-2 text-dark" href="/black-list">{{tContent.pBlackList}}</a>
+      <a class="p-2 text-dark" href="#">{{tContent.pPricing}}</a>
   </nav>
-  <ng-template #enBlock>
-      <a class="p-2 text-dark" href="/posts">Posts</a>
-      <a class="p-2 text-dark" href="/bloger">Bloger</a>
-      <a class="p-2 text-dark" href="/black-list">Black List</a>
-      <a class="p-2 text-dark" href="#">Pricing</a>
-  </ng-template>
-  <ng-template #viBlock>
-      <a class="p-2 text-dark" href="/posts">Bai Viet</a>
-      <a class="p-2 text-dark" href="/bloger">Nguoi Viet</a>
-      <a class="p-2 text-dark" href="/black-list">Danh Sach Han Che</a>
-      <a class="p-2 text-dark" href="#">Dieu Khoan</a>
-  </ng-template>
+  
 
   <a class="btn btn-outline-primary" href="#">Sign up</a>
   
