@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-4" *ngFor= 'let lst of listBlogers | paginate: { itemsPerPage: 6, currentPage: p };'>
+  <div class="col-sm-4" *ngFor= 'let lst of listBlogers | paginate: { itemsPerPage: 6, currentPage: p };  trackBy : trackByName '>
     <div class="card mb-3" >    
         
             <div class="card m-1 ">

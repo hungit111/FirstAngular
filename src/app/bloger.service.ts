@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response  } from "@angular/http";
 
 import { map, catchError } from "rxjs/operators";
-import { log } from 'util';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +10,11 @@ import { log } from 'util';
 export class BlogerService {
 
   constructor( private _http : Http) { }
-  getAll() {
+  getAll() : Observable<any> {
     let rtData = this._http.get("http://127.0.0.1:8888/bloger").
     pipe(map((res :Response ) => {                          
             
-      return res.json();            
+      return res.json() ;            
     }),
     catchError(e => {
       console.log(e);

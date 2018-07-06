@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { HeaderService } from '../header.service';
 import { jsonpFactory } from '@angular/http/src/http_module';
 import { BlackList } from '../blacklist';
@@ -9,24 +9,26 @@ import { BlacklistService } from '../blacklist.service';
 
 @Component({
   selector: 'app-blacklists',
-  templateUrl: './blacklists.component.html'  
+  templateUrl: './blacklists.component.html' 
 })
 export class BlacklistsComponent implements OnInit, OnDestroy {
-
-  constructor( private _hd : HeaderService, private http: Http, private _blackListService : BlacklistService) { }
   title = 'Black List';
   dtOptions: DataTables.Settings = {};
   blackLists ;
   dtTrigger: Subject<any> = new Subject();
-  ngOnInit() {
+  constructor( private _hd : HeaderService, private http: Http, private _blackListService : BlacklistService) { 
     
+  }
 
+  ngOnInit() {
     this._hd.set(this.title);    
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10
     };
     this.getAll();
+
+    
   }
 
   ngOnDestroy(): void {
