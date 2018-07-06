@@ -6,6 +6,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class HeaderService {  
   private title = new Subject<string>();
+  globalLang="EN";
   set( title : string) {
       this.title.next(title);
   }

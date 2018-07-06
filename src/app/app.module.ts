@@ -10,8 +10,10 @@ import { HeaderService } from './header.service';
 import {  HttpModule } from '@angular/http';
 import { DataTablesModule } from 'angular-datatables';
 import { BlacklistsComponent } from './blacklists/blacklists.component';
-import {NgxPaginationModule} from 'ngx-pagination'; 
-
+import {NgxPaginationModule} from 'ngx-pagination';
+import { HeadComponent } from './head/head.component';
+import { NgxPopper } from 'angular-popper'; 
+import { FormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -19,14 +21,17 @@ import {NgxPaginationModule} from 'ngx-pagination';
     AppComponent,
     PostsComponent,
     BlogerComponent,    
-    CommentsComponent, BlacklistsComponent
+    CommentsComponent, BlacklistsComponent, HeadComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpModule,
     DataTablesModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxPopper,
+    FormsModule
+
   ],
   providers: [HeaderService],
   bootstrap: [AppComponent]
