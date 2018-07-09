@@ -10,7 +10,7 @@ export class PostsComponent implements OnInit {
 
     constructor(private _post: PostService) { }
     pageName="Blogs List";    
-    listPost;
+    listPost : Post[];
     getAll(){
       return this._post.getAll().subscribe( p => this.listPost=p);
     }

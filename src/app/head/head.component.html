@@ -9,7 +9,7 @@
       
   </select>
   
-  <nav class="my-2 my-md-0 mr-md-3">
+  <nav class="my-2 my-md-0 mr-md-3" *ngIf= "tContent != undefined">
       <a class="p-2 text-dark" href="/posts">{{tContent.pPost}}</a>
       <a class="p-2 text-dark" href="/bloger">{{tContent.pBloger}}</a>
       <a class="p-2 text-dark" href="/black-list">{{tContent.pBlackList}}</a>

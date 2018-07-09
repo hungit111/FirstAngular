@@ -48,11 +48,10 @@ export class HeadComponent implements OnInit {
     
   }
   
-  getTranslatePack() {    
-    console.log("-------------compo-------------");
+  getTranslatePack() {            
+    
     return  this._hd.getTranslatePack(this.langDefault).subscribe(data => {
-      this.tContent = data.json();               
-         
+      this.tContent = data.json();                        
     });    
   }
   setLang(event){    
