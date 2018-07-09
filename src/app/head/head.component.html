@@ -1,25 +1,30 @@
 
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-  <h5 class="my-0 mr-md-auto font-weight-normal">
-    Seta international
-  </h5>
+<nav class="navbar fixed-top navbar-light bg-light border-bottom box-shadow p-3">
+  <!-- <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow"> -->
+    <h5 class="my-0 mr-md-auto font-weight-normal">
+      Seta international
+    </h5>
+    
+    <select [(ngModel)]="langDefault"  class="my-2 my-md-0 mr-md-2 selectpicker" data-width="fit" (ngModelChange)= 'setLang($event)' >
+        <option *ngFor='let lang of langList' [value]='lang.value' >{{lang.text}}</option>
+        
+    </select>
+    
+    <nav class="my-2 my-md-0 mr-md-3" *ngIf= "tContent != undefined">
+        <a class="p-2 text-dark" href="/posts">{{tContent.pPost}}</a>
+        <a class="p-2 text-dark" href="/bloger">{{tContent.pBloger}}</a>
+        <a class="p-2 text-dark" href="/black-list">{{tContent.pBlackList}}</a>
+        <a class="p-2 text-dark" href="#">{{tContent.pPricing}}</a>
+    </nav>
+    
   
-  <select [(ngModel)]="langDefault"  class="my-2 my-md-0 mr-md-2 selectpicker" data-width="fit" (ngModelChange)= 'setLang($event)' >
-      <option *ngFor='let lang of langList' [value]='lang.value' >{{lang.text}}</option>
-      
-  </select>
+    <a class="btn btn-outline-primary" href="#">Sign up</a>
+    
   
-  <nav class="my-2 my-md-0 mr-md-3" *ngIf= "tContent != undefined">
-      <a class="p-2 text-dark" href="/posts">{{tContent.pPost}}</a>
-      <a class="p-2 text-dark" href="/bloger">{{tContent.pBloger}}</a>
-      <a class="p-2 text-dark" href="/black-list">{{tContent.pBlackList}}</a>
-      <a class="p-2 text-dark" href="#">{{tContent.pPricing}}</a>
-  </nav>
-  
+</nav>
 
-  <a class="btn btn-outline-primary" href="#">Sign up</a>
-  
-</div>
+
+
 
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
   <h1 class="display-4">{{title}}</h1>
