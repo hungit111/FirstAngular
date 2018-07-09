@@ -51,8 +51,7 @@ export class HeadComponent implements OnInit {
     this.getTranslatePack();
     this.setLangList();
   }
-  setLangList(){
-    this.getTranslatePack();
+  setLangList(){    
     this.langList=[{
       value:"EN",
       text: this.langDefault=="EN" ?"English": "Tieng Anh"
@@ -69,6 +68,7 @@ export class HeadComponent implements OnInit {
   ngOnInit() {
     //this._hd.set(this.title);
     this.langDefault=localStorage.getItem("langDefault") || "EN";
+    this.getTranslatePack();
     this.setLangList();
     
   }
