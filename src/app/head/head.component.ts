@@ -18,15 +18,7 @@ export class HeadComponent implements OnInit {
   
   tContent;
   langDefault : string;
-  langList=[{
-    value:"EN",
-    text:"English"
-  },
-  {
-    value:"VI",
-    text:"Vietnamese"
-  }
-  ];
+  langList=[];
   title="Blogs";
   
 
@@ -57,14 +49,27 @@ export class HeadComponent implements OnInit {
   setLang(event){    
     localStorage.setItem("langDefault", event); 
     this.getTranslatePack();
+    this.setLangList();
   }
-  
+  setLangList(){
+    this.getTranslatePack();
+    this.langList=[{
+      value:"EN",
+      text: this.langDefault=="EN" ?"English": "Tieng Anh"
+    },
+    {
+      value:"VI",
+      text: this.langDefault=="EN" ?"Vietnamese": "Tieng Viet"
+      
+    }
+    ];
+  }
   
 
   ngOnInit() {
     //this._hd.set(this.title);
     this.langDefault=localStorage.getItem("langDefault") || "EN";
-    this.getTranslatePack();
+    this.setLangList();
     
   }
   ngOnDestroy() {
