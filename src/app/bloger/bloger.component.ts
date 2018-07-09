@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogerService } from '../bloger.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -7,7 +8,7 @@ import { BlogerService } from '../bloger.service';
   templateUrl: './bloger.component.html'
 })
 export class BlogerComponent implements OnInit {  
-  listBlogers;
+  listBlogers : Observable<any>;
   //initializing p to one
   p: number = 1;
   constructor(  private _blogerServie : BlogerService) { 
@@ -22,8 +23,8 @@ export class BlogerComponent implements OnInit {
     return listBlogers.FirstName_vch;
   }
   ngOnInit() {    
-    this.getAll();   
-    
+    //this.getAll();   
+    this.listBlogers= this._blogerServie.getAll();
   }
 
 }
