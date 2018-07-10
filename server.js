@@ -5,12 +5,12 @@ var myParser = require("body-parser");
 
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
-
+/* 
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("myNewDatabase");
   
-  /* dbo.collection('posts').insertMany([
+  dbo.collection('posts').insertMany([
     {
         id:1, name:"First post", content:"This is first post content!"
     },
@@ -23,10 +23,10 @@ MongoClient.connect(url, function(err, db) {
   ])
   .then(function(result) {
     // process result
-  }) */
+  }) 
   //
   db.close();
-});
+}); */
 
 
 var con = mysql.createConnection({
