@@ -3,6 +3,7 @@ var fs = require('fs');
 var mysql = require('mysql');
 var myParser = require("body-parser");
 
+
 var url = "mongodb://localhost:27017/myNewDatabase";
 
 var mongoose = require('mongoose');
@@ -76,6 +77,8 @@ var cors = require('cors')
 app.options('*', cors()) // include before other routes 
 app.use(cors())
 app.use(myParser.urlencoded({extended : true}));
+app.use(myParser());
+
 
 app.get('/', function(req ,res ) {
     res.statusCode = 200;
@@ -108,6 +111,30 @@ app.get('/comment/:id', function(req ,res ) {
         if (err) throw err;                         
         res.send(data);
     });
+
+}); 
+
+app.post('/comment/add', function(req ,res,next ) {    
+    console.log("add action");
+    console.log(req.body.name);        
+    res.statusCode = 200;    
+    res.setHeader('Content-Type', 'application/json');    
+    //
+    var cm1 = new Comments ({
+        _id: new mongoose.Types.ObjectId(),
+        postId:  mongoose.Types.ObjectId(req.body.postId),
+        name: req.body.name,
+        title: req.body.title,
+        content: req.body.content
+    });
+     cm1.save(function(err){
+        if (err) throw err;
+
+     })
+    //
+
+    res.send(req.body);
+    next();
 
 }); 
 app.get('/bloger', function(req ,res ) {

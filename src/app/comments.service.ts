@@ -26,4 +26,13 @@ export class CommentsService {
     
     return returnVal;
   }
+  add(obj : Comment){    
+    this._http.post('http://localhost:8888/comment/add',obj,'').subscribe(
+      (data) => {        
+        console.log("Success"); 
+    });
+      
+    
+    return true;
+  }
 }

@@ -20,12 +20,12 @@
                       <div class="input-group-prepend">
                           <div class="input-group-text">@Hung</div>
                       </div>
-                      <textarea class="form-control" id="txtComment" rows="1"></textarea>                            
+                      <textarea #txtComment class="form-control" id="txtComment" rows="1"></textarea>                            
                       
                   </div>
               </div>
               <div class="col-sm-2">
-                  <button class="btn btn-primary">Add comment</button>
+                  <button class="btn btn-primary" (click)="AddComments(txtComment.value, lst._id)">Add comment</button>
               </div>
           </div>
           
