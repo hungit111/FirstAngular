@@ -16,7 +16,6 @@ export class PostsComponent implements OnInit {
       
     }
     ngOnInit() {
-      this.getAll();
-      console.log(this.listPost);
+      this.getAll();      
   }
 }

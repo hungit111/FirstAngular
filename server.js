@@ -3,13 +3,11 @@ var fs = require('fs');
 var mysql = require('mysql');
 var myParser = require("body-parser");
 
-var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
+var url = "mongodb://localhost:27017/myNewDatabase";
 
 var mongoose = require('mongoose');
-  
 
- mongoose.connect(url+"myNewDatabase", function (err) {
+ mongoose.connect(url, function (err) {
   
     if (err) throw err;
   
@@ -46,6 +44,7 @@ var mongoose = require('mongoose');
     if (err) throw err;
     var cm1 = new Comments ({
         _id: new mongoose.Types.ObjectId(),
+        postId: p1._id,
         name: "Zolo",
         title: "Zolo post",
         content: "This is content of zolo title"
@@ -56,28 +55,7 @@ var mongoose = require('mongoose');
      })
  }); */
 
-/* 
-MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("myNewDatabase");
-  
-  dbo.collection('posts').insertMany([
-    {
-        id:1, name:"First post", content:"This is first post content!"
-    },
-    {
-        id:2, name:"Second post", content:"This is second post !"
-    },
-    {
-        id:3, name:"Thirst post", content:"This is thirst post !"
-    }     
-  ])
-  .then(function(result) {
-    // process result
-  }) 
-  //
-  db.close();
-}); */
+
 
 
 var con = mysql.createConnection({
@@ -107,41 +85,31 @@ app.get('/', function(req ,res ) {
     .sort()
     .limit()
     .exec(function(err, data) {
-        if (err) throw err;         
-        console.log("sdfsdfsfsfd");
-        console.log(data);
+        if (err) throw err;                         
         res.send(data);
     });
-    /* MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
-        var dbo = db.db("myNewDatabase");
-        dbo.collection("posts").find({}).toArray(function(err, result) {
-            if (err) throw err;
-            db.close();
-            res.send(JSON.stringify(result));
-            
-        });
-    });     */
+    
     
 });
-app.get('/comment/:id', function(req ,res ) {
+app.get('/comment/:id', function(req ,res ) {    
+    
+    //req.params.id
+    console.log(req.params.id);
+    var id = mongoose.Types.ObjectId(req.params.id);    
+    
     res.statusCode = 200;
     console.log("get action");
-    res.setHeader('Content-Type', 'application/json');
-    var jsonReturn ;
-    MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
-        var dbo = db.db("myNewDatabase");
-        dbo.collection("comments").find({}).toArray(function(err, result) {
-            if (err) throw err;
-            db.close();
-            console.log(result);
-            res.send(JSON.stringify(result));
-            
-        });
-    });    
+    res.setHeader('Content-Type', 'application/json');    
+    Comments.find({})
+    .where("postId").equals(id)
+    .sort()
+    .limit()
+    .exec(function(err, data) {
+        if (err) throw err;                         
+        res.send(data);
+    });
 
-});
+}); 
 app.get('/bloger', function(req ,res ) {
     res.statusCode = 200;      
     res.setHeader('Content-Type', 'application/json');

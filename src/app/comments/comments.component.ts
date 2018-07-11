@@ -14,11 +14,12 @@ export class CommentsComponent implements OnInit {
   listComment;
   
   
+  
   getCommentsByPostId(postId) {
     return this._comment.getListCommentByPostId(postId);
   }  
-  ngOnInit() {
-    this.listComment = this.getCommentsByPostId(this.postId);    
+  ngOnInit() {    
+    this.getCommentsByPostId(this.postId).subscribe( d => this.listComment= d);    
     
   }
 

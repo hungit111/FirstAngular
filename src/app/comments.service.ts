@@ -11,21 +11,18 @@ export class CommentsService {
 
   constructor(private _http : Http) { }
   getListCommentByPostId(postId :string) : Observable<Comment[]>{
-  let returnVal;
-  console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-  returnVal = this._http.get("http://localhost:8888/comment/3").
-    pipe(map((res: Response)=>{
-        console.log(res);
+  let returnVal;  
+  returnVal = this._http.get("http://localhost:8888/comment/"+postId).
+    pipe(map((res: Response)=>{                
         
         return res.json();
         }),
-        catchError(e => {
-            console.log("=======================");
+        catchError(e => {            
         console.log(e);
         return "" ;
       })
     );
-    console.log(returnVal);
+    
     
     return returnVal;
   }
