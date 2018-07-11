@@ -22,6 +22,8 @@ export class PostService {
       return "" ;
     })
     );        
+    console.log(rtData);
+    
     return rtData;   
   }
 }

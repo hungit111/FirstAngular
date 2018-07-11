@@ -1,5 +1,5 @@
 
-export class Comment{
+export class Comment{    
     name: string;
     title: string;
     content: string;

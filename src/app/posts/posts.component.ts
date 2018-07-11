@@ -12,9 +12,11 @@ export class PostsComponent implements OnInit {
     pageName="Blogs List";    
     listPost : Post[];
     getAll(){
-      return this._post.getAll().subscribe( p => this.listPost=p);
+      return this._post.getAll().subscribe( p => this.listPost=p);      
+      
     }
     ngOnInit() {
       this.getAll();
+      console.log(this.listPost);
   }
 }

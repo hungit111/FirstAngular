@@ -5,6 +5,57 @@ var myParser = require("body-parser");
 
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
+
+var mongoose = require('mongoose');
+  
+
+ mongoose.connect(url+"myNewDatabase", function (err) {
+  
+    if (err) throw err;
+  
+    console.log('Successfully connected');
+  
+ });
+ 
+ var postsSchema= mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,    
+    name: String,
+    content: String
+ });
+
+ var commentSchema = mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
+    postId: mongoose.Schema.Types.ObjectId,
+    name: String,
+    title: String,
+    content:String,
+    create : {
+        type: Date,
+        default: Date.now
+    }    
+ });
+ 
+ var Posts = mongoose.model("Posts",postsSchema);
+ var Comments= mongoose.model("Comments",commentSchema);
+/*  var p1 = new Posts ({
+    _id: new mongoose.Types.ObjectId(),
+    name: "Fourth post",    
+    content: "This is content of 4th post"
+ });
+ p1.save(function(err){
+    if (err) throw err;
+    var cm1 = new Comments ({
+        _id: new mongoose.Types.ObjectId(),
+        name: "Zolo",
+        title: "Zolo post",
+        content: "This is content of zolo title"
+     });
+     cm1.save(function(err){
+         if (err) throw err;
+
+     })
+ }); */
+
 /* 
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
@@ -52,8 +103,16 @@ app.get('/', function(req ,res ) {
     res.statusCode = 200;
     console.log("get action");
     res.setHeader('Content-Type', 'application/json');
-    var jsonReturn ;
-    MongoClient.connect(url, function(err, db) {
+    Posts.find({})
+    .sort()
+    .limit()
+    .exec(function(err, data) {
+        if (err) throw err;         
+        console.log("sdfsdfsfsfd");
+        console.log(data);
+        res.send(data);
+    });
+    /* MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db("myNewDatabase");
         dbo.collection("posts").find({}).toArray(function(err, result) {
@@ -62,9 +121,25 @@ app.get('/', function(req ,res ) {
             res.send(JSON.stringify(result));
             
         });
+    });     */
+    
+});
+app.get('/comment/:id', function(req ,res ) {
+    res.statusCode = 200;
+    console.log("get action");
+    res.setHeader('Content-Type', 'application/json');
+    var jsonReturn ;
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db("myNewDatabase");
+        dbo.collection("comments").find({}).toArray(function(err, result) {
+            if (err) throw err;
+            db.close();
+            console.log(result);
+            res.send(JSON.stringify(result));
+            
+        });
     });    
-    
-    
 
 });
 app.get('/bloger', function(req ,res ) {
@@ -96,7 +171,11 @@ app.post('/', function(req ,res ) {
     res.send("");
 
 });
+//
 
+    
+  
+//
 var server = app.listen(8888, "127.0.0.1",function(){
     var host = server.address().address;
     var port = server.address().port;
