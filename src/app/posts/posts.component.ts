@@ -10,15 +10,20 @@ import { CommentsService } from '../comments.service';
 })
 export class PostsComponent implements OnInit {
 
-    constructor(private _postService: PostService, private _commentService: CommentsService) { }
+    constructor(
+        private postService: PostService, 
+        private commentService: CommentsService        
+      ) { }
     pageName="Blogs List";    
     listPost : Post[];
     
     ngOnInit() {
-      this.getAll();      
+     
+      this.getAll(); 
+       
     }
     getAll(){
-      return this._postService.getAll().subscribe( p => this.listPost=p);      
+      return this.postService.getAll().subscribe( p => this.listPost=p);      
       
     }
     AddComments(content,postId){      
@@ -29,7 +34,14 @@ export class PostsComponent implements OnInit {
         content: content,
         postId:postId
       };
-      this._commentService.add(obj);
-      this.getAll();
+      
+      if(this.commentService.add(obj)){
+        this.getAll();
+      }
+      else
+      {
+        alert("error!")
+      }
+      
     }
 }

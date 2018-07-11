@@ -26,13 +26,15 @@ export class CommentsService {
     
     return returnVal;
   }
-  add(obj : Comment){    
+  add(obj : Comment) : boolean{    
+    let rtVal= false;
     this._http.post('http://localhost:8888/comment/add',obj,'').subscribe(
       (data) => {        
         console.log("Success"); 
-    });
-      
-    
-    return true;
+        rtVal= true;
+    },(error)=> {
+      rtVal= false;
+    });      
+    return rtVal;
   }
 }

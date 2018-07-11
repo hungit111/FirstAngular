@@ -15,6 +15,7 @@ import { HeadComponent } from './head/head.component';
 import { NgxPopper } from 'angular-popper'; 
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     PostsComponent,
     BlogerComponent,    
-    CommentsComponent, BlacklistsComponent, HeadComponent
+    CommentsComponent, BlacklistsComponent, HeadComponent, SpinnerComponent
   ],
   imports: [
     BrowserModule,

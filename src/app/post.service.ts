@@ -4,16 +4,22 @@ import { Http, Response  } from "@angular/http";
 import { map, catchError } from "rxjs/operators";
 import { Observable } from 'rxjs';
 import { Post } from './post';
+import { SpinnerService } from './spinner.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  constructor( private _http : Http) { }
-  getAll(): Observable<Post[]> {        
-    let rtData = this._http.get("//127.0.0.1:8888/").
-    pipe(map((res: Response) => {                                           
+  constructor( private http : Http,
+    private spinnerService: SpinnerService
+
+  ) { }
+  getAll(): Observable<Post[]> {   
+    this.spinnerService.show('mySpinner');  
+    let rtData = this.http.get("//127.0.0.1:8888/").
+    pipe(map((res: Response) => { 
+      //this.spinnerService.hide('mySpinner');                                          
       return res.json();      
     }),
     catchError(e => {
