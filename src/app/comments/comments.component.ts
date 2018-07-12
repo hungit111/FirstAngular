@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommentsService } from '../comments.service';
 
+
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html'
@@ -8,7 +9,8 @@ import { CommentsService } from '../comments.service';
 
 export class CommentsComponent implements OnInit {
   @Input() postId : string;  
-  constructor(private _comment: CommentsService ) {
+  constructor(private comment: CommentsService    
+  ) {
     
   }
   listComment;
@@ -19,7 +21,7 @@ export class CommentsComponent implements OnInit {
   }
   
   getCommentsByPostId(postId) {
-    return this._comment.getListCommentByPostId(postId);
+    return this.comment.getListCommentByPostId(postId);
   }  
 
 

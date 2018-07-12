@@ -3,16 +3,19 @@ import { Comment } from './comment';
 import { map, catchError } from "rxjs/operators";
 import { Observable } from '../../node_modules/rxjs';
 import { Http } from '../../node_modules/@angular/http';
+import { SpinnerService } from './spinner.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommentsService {
 
-  constructor(private _http : Http) { }
+  constructor(private http : Http,
+    private spinnerService: SpinnerService
+  ) { }
   getListCommentByPostId(postId :string) : Observable<Comment[]>{
   let returnVal;  
-  returnVal = this._http.get("http://localhost:8888/comment/"+postId).
+  returnVal = this.http.get("http://localhost:8888/comment/"+postId).
     pipe(map((res: Response)=>{                
         
         return res.json();
@@ -27,10 +30,12 @@ export class CommentsService {
     return returnVal;
   }
   add(obj : Comment) : boolean{    
-    let rtVal= false;
-    this._http.post('http://localhost:8888/comment/add',obj,'').subscribe(
+    var rtVal= false;
+    this.spinnerService.show('mySpinner');  
+    this.http.post('http://localhost:8888/comment/add',obj,'').subscribe(
       (data) => {        
         console.log("Success"); 
+        this.spinnerService.hide('mySpinner');  
         rtVal= true;
     },(error)=> {
       rtVal= false;
