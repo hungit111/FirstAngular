@@ -1,14 +1,14 @@
 var http = require('http');
 var fs = require('fs');
 var mysql = require('mysql');
-//var myParser = require("body-parser");
+var myParser = require("body-parser");
 
 var express = require('express');
 var app = express();
 var cors = require('cors')
 app.options('*', cors()) // include before other routes 
 app.use(cors())
-
+app.use(myParser.urlencoded({extended : true}));
 
 var url = "mongodb://localhost:27017/myNewDatabase";
 
@@ -102,6 +102,7 @@ app.post('/comment/add', function(req ,res,next ) {
     next();
 
 }); 
+
  /* 
  
 
@@ -119,8 +120,7 @@ con.connect(function(err) {
 });
 
 
-//app.use(myParser.urlencoded({extended : true}));
-//app.use(myParser());
+
 
 
 app.get('/bloger', function(req ,res ) {
