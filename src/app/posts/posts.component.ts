@@ -26,7 +26,7 @@ export class PostsComponent implements OnInit {
       return this.postService.getAll().subscribe( p => this.listPost=p);      
       
     }
-    AddComments(content,postId){      
+    async AddComments(content,postId){      
       
       var obj : Comment = {
         name:"Hung",
@@ -35,7 +35,7 @@ export class PostsComponent implements OnInit {
         postId:postId
       };
       var response ;
-      this.commentService.add(obj).subscribe(d => response=d) ;
+      await this.commentService.add(obj).subscribe(d => response=d) ;
       console.log(response);
       
       if(response.length){
