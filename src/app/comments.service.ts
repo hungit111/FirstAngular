@@ -32,7 +32,7 @@ export class CommentsService {
   add(obj : Comment) : Observable<boolean>{        
     this.spinnerService.show('mySpinner');     
      
-    return this.http.post('http://127.0.1.1:8080/comment/add',obj,'').pipe(map(
+    this.http.post('http://127.0.1.1:8080/comment/add',obj,'').pipe(map(
       (data) => {        
         console.log("Success"); 
         this.spinnerService.hide('mySpinner');  
@@ -41,6 +41,6 @@ export class CommentsService {
       console.log("fail"); 
       return false;
     }));      
-    
+    return
   }
 }
