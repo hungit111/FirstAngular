@@ -29,10 +29,10 @@ export class CommentsService {
     
     return returnVal;
   }
-  add(obj : Comment) : Observable<boolean>{        
+  add(obj : Comment) {        
     this.spinnerService.show('mySpinner');     
      
-   this.http.post('http://127.0.1.1:8080/comment/add',obj,'').pipe(map(
+   this.http.post('http://127.0.1.1:8080/comment/add',obj,'').subscribe(
       (data) => {        
         console.log("Success"); 
         this.spinnerService.hide('mySpinner');  
@@ -40,7 +40,6 @@ export class CommentsService {
     },(error)=> {
       console.log("fail"); 
       return false;
-    }));    
-    return;
+    });        
   }
 }
