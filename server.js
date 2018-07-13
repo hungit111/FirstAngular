@@ -99,7 +99,7 @@ app.post('/comment/add', function(req ,res,next ) {
      })
     //
 
-    res.send("{status:sucess}");
+    res.send({status:sucess});
     
     next();
 
