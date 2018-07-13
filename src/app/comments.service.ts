@@ -29,19 +29,17 @@ export class CommentsService {
     
     return returnVal;
   }
-  add(obj : Comment) : boolean{    
-    var rtVal= false;
-    this.spinnerService.show('mySpinner'); 
-    console.log(obj);
+  add(obj : Comment) : Observable<boolean>{        
+    this.spinnerService.show('mySpinner');     
      
-    this.http.post('http://127.0.1.1:8080/comment/add',obj,'').subscribe(
+    var rtVal=this.http.post('http://127.0.1.1:8080/comment/add',obj,'').pipe(map(
       (data) => {        
         console.log("Success"); 
         this.spinnerService.hide('mySpinner');  
-        rtVal= true;
+        return true;
     },(error)=> {
-      rtVal= false;
-    });      
+      return false;
+    }));      
     return rtVal;
   }
 }
