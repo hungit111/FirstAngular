@@ -80,7 +80,8 @@ app.get('/comment/:id', function(req ,res ) {
 
 app.post('/comment/add', function(req ,res,next ) {    
     console.log("add action");
-    console.log(req.body.name);        
+    
+    console.log(req.body);        
     res.statusCode = 200;    
     res.setHeader('Content-Type', 'application/json');    
     //
