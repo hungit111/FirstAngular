@@ -10,7 +10,7 @@ export class BlacklistService {
 
   constructor(private _http : Http) { }
   getAll() {
-    let data = this._http.get("http://localhost:8080/black-list").
+    let data = this._http.get("http://127.0.1.1:8080/black-list").
     pipe(map((res: Response) => {
       return res.json();
     }))
