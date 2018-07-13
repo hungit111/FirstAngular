@@ -14,7 +14,7 @@ var url = "mongodb://localhost:27017/myNewDatabase";
 
 var mongoose = require('mongoose');
 
- mongoose.connect(url, function (err) {
+ mongoose.connect(url, { useNewUrlParser: true },function (err) {
   
     if (err) throw err;
   
