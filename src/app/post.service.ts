@@ -26,7 +26,7 @@ export class PostService {
     }),
     catchError(e => {
       console.log(e);
-      return "" ;
+      return "{}" ;
     })
     );        
     
