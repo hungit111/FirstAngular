@@ -8,6 +8,7 @@ var app = express();
 var cors = require('cors')
 app.options('*', cors()) // include before other routes 
 app.use(cors())
+app.use(myParser.json());
 app.use(myParser.urlencoded({extended : true}));
 
 var url = "mongodb://localhost:27017/myNewDatabase";
