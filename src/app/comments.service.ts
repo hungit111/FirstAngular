@@ -15,7 +15,7 @@ export class CommentsService {
   ) { }
   getListCommentByPostId(postId :string) : Observable<Comment[]>{
   let returnVal;  
-  returnVal = this.http.get("http://localhost:8888/comment/"+postId).
+  returnVal = this.http.get("http://localhost:8080/comment/"+postId).
     pipe(map((res: Response)=>{                
         
         return res.json();
@@ -32,7 +32,7 @@ export class CommentsService {
   add(obj : Comment) : boolean{    
     var rtVal= false;
     this.spinnerService.show('mySpinner');  
-    this.http.post('http://localhost:8888/comment/add',obj,'').subscribe(
+    this.http.post('http://localhost:8080/comment/add',obj,'').subscribe(
       (data) => {        
         console.log("Success"); 
         this.spinnerService.hide('mySpinner');  

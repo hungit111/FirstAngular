@@ -11,7 +11,7 @@ export class BlogerService {
 
   constructor( private _http : Http) { }
   getAll() : Observable<any> {
-    let rtData = this._http.get("http://localhost:8888/bloger").
+    let rtData = this._http.get("http://localhost:8080/bloger").
     pipe(map((res :Response ) => {                          
             
       return res.json() ;            
