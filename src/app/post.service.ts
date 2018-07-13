@@ -17,7 +17,7 @@ export class PostService {
   ) { }
   getAll(): Observable<Post[]> {   
     this.spinnerService.show('mySpinner');    
-    let rtData = this.http.get("//127.0.0.1:8888/").
+    let rtData = this.http.get("//localhost:8888/").
     pipe(map((res: Response) => {
       this.spinnerService.hide('mySpinner');                                           
       
