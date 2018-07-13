@@ -54,7 +54,7 @@ app.get('/', function(req ,res ) {
     .limit()
     .exec(function(err, data) {
         if (err) throw err;                         
-        res.send("{status:sucess}");
+        res.send(data);
     });
     
     
@@ -99,7 +99,8 @@ app.post('/comment/add', function(req ,res,next ) {
      })
     //
 
-    res.send(req.body);
+    res.send("{status:sucess}");
+    
     next();
 
 }); 
