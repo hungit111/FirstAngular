@@ -34,8 +34,11 @@ export class PostsComponent implements OnInit {
         content: content,
         postId:postId
       };
+      var response ;
+      this.commentService.add(obj).subscribe(d => response=d) ;
+      console.log(response);
       
-      if(this.commentService.add(obj)){
+      if(response.leng){
         this.getAll();
       }
       else

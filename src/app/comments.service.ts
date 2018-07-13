@@ -29,17 +29,17 @@ export class CommentsService {
     
     return returnVal;
   }
-  add(obj : Comment) {        
+  add(obj : Comment):Observable<any> {        
     this.spinnerService.show('mySpinner');     
      
-   this.http.post('http://127.0.1.1:8080/comment/add',obj,'').subscribe(
-      (data) => {        
-        console.log("Success"); 
-        this.spinnerService.hide('mySpinner');  
-        return true;
-    },(error)=> {
-      console.log("fail"); 
-      return false;
-    });        
+    return this.http.post('http://127.0.1.1:8080/comment/add',obj,'').
+    pipe(map((res: Response)=>{                        
+        return res.json();
+        }),
+        catchError(e => {            
+        console.log(e);
+        return "{}" ;
+      })
+    );      
   }
 }
