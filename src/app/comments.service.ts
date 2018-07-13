@@ -31,7 +31,9 @@ export class CommentsService {
   }
   add(obj : Comment) : boolean{    
     var rtVal= false;
-    this.spinnerService.show('mySpinner');  
+    this.spinnerService.show('mySpinner'); 
+    console.log(obj);
+     
     this.http.post('http://127.0.1.1:8080/comment/add',obj,'').subscribe(
       (data) => {        
         console.log("Success"); 
