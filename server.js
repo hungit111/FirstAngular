@@ -77,7 +77,7 @@ var cors = require('cors')
 app.options('*', cors()) // include before other routes 
 app.use(cors())
 app.use(myParser.urlencoded({extended : true}));
-app.use(myParser());
+app.use(myParser().json());
 
 
 app.get('/', function(req ,res ) {
