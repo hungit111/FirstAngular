@@ -38,6 +38,7 @@ export class CommentsService {
         this.spinnerService.hide('mySpinner');  
         return true;
     },(error)=> {
+      console.log("fail"); 
       return false;
     }));      
     
