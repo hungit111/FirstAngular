@@ -34,7 +34,9 @@ export class CommentsService {
      
     return this.http.post('http://127.0.1.1:8080/comment/add',obj,'').
     pipe(map((res: Response)=>{                        
-        return res.json();
+        console.log(res);
+        
+        return res.json();        
         }),
         catchError(e => {            
         console.log(e);

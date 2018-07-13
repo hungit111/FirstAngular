@@ -26,7 +26,7 @@ export class PostsComponent implements OnInit {
       return this.postService.getAll().subscribe( p => this.listPost=p);      
       
     }
-    async AddComments(content,postId){      
+    AddComments(content,postId){      
       
       var obj : Comment = {
         name:"Hung",
@@ -34,17 +34,21 @@ export class PostsComponent implements OnInit {
         content: content,
         postId:postId
       };
-      var response ;
-      await this.commentService.add(obj).subscribe(d => response=d) ;
-      console.log(response);
       
-      if(response.length){
-        this.getAll();
-      }
-      else
-      {
-        alert("error!")
-      }
+      this.commentService.add(obj).subscribe(d => {
+        console.log("==========================");
+        console.log(d);
+        if(d.length){
+          this.getAll();
+        }
+        else
+        {
+          alert("error!")
+        }
+      }) ;
+      
+      
+     
       
     }
 }
