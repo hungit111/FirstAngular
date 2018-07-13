@@ -152,7 +152,7 @@ app.post('/', function(req ,res ) {
 
 }); */
 
-var server = app.listen(8080, "localhost",function(){
+var server = app.listen(8080, "0.0.0.0",function(){
     var host = server.address().address;
     var port = server.address().port;
     console.log("ok");    
