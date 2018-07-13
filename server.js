@@ -155,6 +155,6 @@ app.post('/', function(req ,res ) {
 var server = app.listen(8888, "localhost",function(){
     var host = server.address().address;
     var port = server.address().port;
-    console.log("app listening at http://%s:%s", host, port);    
+    console.log("ok");    
     
 });
