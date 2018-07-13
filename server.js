@@ -61,11 +61,11 @@ app.get('/', function(req ,res ) {
 app.get('/comment/:id', function(req ,res ) {    
     
     //req.params.id
-    console.log(req.params.id);
+    //console.log(req.params.id);
     var id = mongoose.Types.ObjectId(req.params.id);    
     
     res.statusCode = 200;
-    console.log("get action");
+    //console.log("get action");
     res.setHeader('Content-Type', 'application/json');    
     Comments.find({})
     .where("postId").equals(id)
