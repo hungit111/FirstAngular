@@ -1,7 +1,13 @@
 var http = require('http');
 var fs = require('fs');
 var mysql = require('mysql');
-var myParser = require("body-parser");
+//var myParser = require("body-parser");
+
+var express = require('express');
+var app = express();
+var cors = require('cors')
+app.options('*', cors()) // include before other routes 
+app.use(cors())
 
 
 var url = "mongodb://localhost:27017/myNewDatabase";
@@ -14,9 +20,9 @@ var mongoose = require('mongoose');
   
     console.log('Successfully connected');
   
- });
- 
- var postsSchema= mongoose.Schema({
+});
+
+var postsSchema= mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,    
     name: String,
     content: String
@@ -36,50 +42,8 @@ var mongoose = require('mongoose');
  
  var Posts = mongoose.model("Posts",postsSchema);
  var Comments= mongoose.model("Comments",commentSchema);
-/*  var p1 = new Posts ({
-    _id: new mongoose.Types.ObjectId(),
-    name: "Fourth post",    
-    content: "This is content of 4th post"
- });
- p1.save(function(err){
-    if (err) throw err;
-    var cm1 = new Comments ({
-        _id: new mongoose.Types.ObjectId(),
-        postId: p1._id,
-        name: "Zolo",
-        title: "Zolo post",
-        content: "This is content of zolo title"
-     });
-     cm1.save(function(err){
-         if (err) throw err;
 
-     })
- }); */
-
-
-
-
-var con = mysql.createConnection({
-    host: "10.0.5.100",
-    user: "EBMSQLUser",
-    password: "eSU!1653",
-    port: 3306
-});
-  
-con.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-});
-
-var express = require('express');
-var app = express();
-var cors = require('cors')
-app.options('*', cors()) // include before other routes 
-app.use(cors())
-app.use(myParser.urlencoded({extended : true}));
-app.use(myParser().json());
-
-
+ 
 app.get('/', function(req ,res ) {
     res.statusCode = 200;
     console.log("get action");
@@ -137,6 +101,27 @@ app.post('/comment/add', function(req ,res,next ) {
     next();
 
 }); 
+ /* 
+ 
+
+
+var con = mysql.createConnection({
+    host: "10.0.5.100",
+    user: "EBMSQLUser",
+    password: "eSU!1653",
+    port: 3306
+});
+  
+con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+});
+
+
+//app.use(myParser.urlencoded({extended : true}));
+//app.use(myParser());
+
+
 app.get('/bloger', function(req ,res ) {
     res.statusCode = 200;      
     res.setHeader('Content-Type', 'application/json');
@@ -165,11 +150,9 @@ app.post('/', function(req ,res ) {
     res.setHeader('Content-Type', 'application/json');
     res.send("");
 
-});
-//
+}); */
 
-//
-var server = app.listen(8888, "http://localhost/",function(){
+var server = app.listen(8888, "localhost",function(){
     var host = server.address().address;
     var port = server.address().port;
     console.log("app listening at http://%s:%s", host, port);    
